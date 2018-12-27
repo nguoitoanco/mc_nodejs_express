@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="480b3b26-f5ed-4a56-82fd-74c255a66c19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/AuthServerOAuth2Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/Encoders.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/JdbcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/ResourceServerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/WebAppInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/config/WebMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/controller/DynamicRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Company.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Department.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/Office.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/security/Authority.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/entity/security/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/enums/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/filter/RequestLoggingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/manager/SessionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/model/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/model/UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/provider/CustomAuthenticationProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/repositories/CompanyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/repositories/CompanyRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/services/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/utils/ConversionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/utils/DateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/java/mms/ws/utils/FileUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V10__create_oauth2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V11__create_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V12__insert_authentication.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V13__insert_authorities.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V14__insert_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V1__create_hibernate_sequence.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V2__create_address.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V3__create_company.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V4__create_car.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V5__create_department.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V6__create_employee.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V7__insert_car.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V8__create_office.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/postgresql/V9__insert_office.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/resources/schema.sql_bk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MMS/merchant-ws/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/.idea/ant.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/Merchant_vn.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/WEB-INF/lib/gson-2.8.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/css/common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/css/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/js/campaign.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/js/event.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/js/kameiten.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/js/lib/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/jsp/js/lib/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/MMS/src/jp/co/hitachisolutions/merchant/action/PIM200_02CustomSearchAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/merchantws/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/merchantws/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/merchantws/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../eclipse/workspace/merchantws/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mc_nodejs_express.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/runConfigurations/bin_www.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mc_nodejs_ws/mc_nodejs_ws.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/java/mms/ws/config/server/MessageConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/java/mms/ws/entity/UserAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/java/mms/ws/filter/RequestLoggingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/java/mms/ws/repository/UserAPIRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/java/mms/ws/service/RestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V10__create_oauth2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V11__create_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V12__insert_authentication.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V13__insert_authorities.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V14__insert_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/db/migration/postgresql/V1__create_hibernate_sequence.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mms-oauth2/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/.idea/runConfigurations/bin_www.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/node js learning/controllers/books.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/node js learning/models/book.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/node js learning/routes/books.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nodejslearning/node js learning/views/books.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guide.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../run.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/LoginSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/MessageConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/RequestLoggingFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/WebAppInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/config/WebMvcConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/contraints/NotEmptyAndValidSize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/contraints/NotEmptyAndValidSizeValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/contraints/PasswordConstraintValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/contraints/ValidPassword.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/error/CommonErrorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/error/ExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/exception/CommonException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/Address.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/BaseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ColumnCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/Condition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/SearchCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/UploadFileContent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/UserInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/constant/Constant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/dto/SchoolDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/Interview.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/Profile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/School.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/SchoolAdmission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/SchoolEmployee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/SchoolInterviewStudent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/SchoolProfileStudent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/SchoolStudyLife.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/StudyType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/AccessRight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/Action.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/ColumnNames.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/DatabaseType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/SearchOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/TableNames.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/enums/UserType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/form/BaseForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/form/UserDetailForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/form/UserForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/AdmissionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/ChangePasswordRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/CreateInterviewRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/CreateProfileRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/CreateSchoolEmployeeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/CreateUserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/DownloadFileRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/EmployeeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetAdmissionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetAdmissionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetEmployeeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetEmployeeResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetInterviewRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetInterviewResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetProfileResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetSchoolRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetSchoolResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetStudentRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/GetStudentResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/LoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/LogoutResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/Request.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SchoolRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchAdmissionListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchAdmissionListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchEmployeeListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchEmployeeListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchInterviewListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchInterviewListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchProfileListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchProfileListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchSchoolListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchSchoolListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchStudentListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SearchStudentListResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SendMailRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/SendMailWitchAttachRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateAdmissionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateEmployeeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateInterviewRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateProfileRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateSchoolRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateSchoolResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateStudentRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UpdateStudentResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/model/ws/UploadMultiFileRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/service/BaseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/service/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/CommonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/ConversionUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/CryptUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/DateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/EMessageResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/EServiceResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/EStringUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/LoginUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/util/ValidatorUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/GlobalControllerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/controller/BaseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/controller/IndexController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/esa/edu/vn/web/form/LoginForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/build.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/checkstyle/sun_check.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/messages_ja_JP.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/views/login/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/views/student/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/css/screen.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/fonts/SFUIDisplay-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/fonts/SFUIDisplay-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_about.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_chiTietThiSinh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_danhSachTruong.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_dichvu_sp.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_reg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/banner_univer06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/bg_banner_regmail.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/bg_dad_mom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/bg_evaluate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/btn_dangtin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/chiTietThiSinhImage1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/chiTietThiSinhImage2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/chiTietThiSinhImage3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/choose_img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/circle_list.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/fit_school1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/flag_vn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/font_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_alert.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_calendar_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_camera_black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_camera_white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_check.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_check_box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_city.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_cv_moi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_delete.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_download.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_face.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_face2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_gg+.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_gg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_ho_so.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_mail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_mc_excel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_mc_word.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_nation_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_nav.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_next_blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_next_gray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_pencil.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_pencil_gray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_phone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_place.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_place2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_printer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_qg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_rrs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_see.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_setting_black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_shake_hands.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_street.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_street_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_students_cap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_sv_moi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_sv_yeu_thich.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_time.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_tin_dang_tuyen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_tw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_tw2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_user_gray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_user_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/icon_yt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/imgListSchool1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/imgStudent.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_box_news.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_chon_anh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_dangTin_dichVu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_quanLy_dichVu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_thongTinTruong.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/img_timKiem_dichVu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/left_arrow_login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/liststyle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/logo_univer06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/main_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/partner06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/quanLyThongTin1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/slide01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/slide02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/slide03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/slide04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/images/slide_tkTruongBangTin1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/js/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/js/functions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/webapp/resources/js/lib/jquery.min.js" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1729986465">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="js" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JavaScript" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="584">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="60" />
+    <option name="y" value="10" />
+    <option name="width" value="1435" />
+    <option name="height" value="805" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="mc_nodejs_express" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mc_nodejs_express" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.14.2" />
+    <property name="last_opened_file_path" value="C:/Program Files/nodejs/node.exe" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="480b3b26-f5ed-4a56-82fd-74c255a66c19" name="Default Changelist" comment="" />
+      <created>1545880835412</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545880835412</updated>
+      <workItem from="1545880852643" duration="51000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="51000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="npm" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
