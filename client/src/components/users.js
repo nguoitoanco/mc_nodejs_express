@@ -72,6 +72,7 @@ export default class Users extends Component {
         this.setState({
             modalIsOpen: false
         });
+        window.location.reload();
     }
 
     logChange(e) {
@@ -142,7 +143,9 @@ export default class Users extends Component {
             if(data === "success"){
                 this.setState({msg: "User has been deleted."});
             }
+
             alert('User has been deleted.');
+            window.location.reload();
         }).catch(function(err) {
             console.log(err);
         });
