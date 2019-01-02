@@ -1,29 +1,37 @@
 import React, {Component} from 'react';
 import './users.css';
-import Modal from 'react-modal';
-// import Validation from 'react-validation';
-// import "./validation.js";
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import {Button, FormGroup} from 'react-bootstrap';
 import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+const toastStyle = {
+    fontFamily: 'sans-serif',
+    color: '#FFFFFF'
+};
 export const required = (value) => {
-    if (validator.isEmpty(value + '')) {
-        return <small className="form-text text-danger">This field is required</small>;
+    if (validator.isEmpty(value.toString())) {
+        return <small className="form-text text-danger">This field is required.</small>;
     }
 };
 
-export const email = (value) => {
-    if (!validator.isEmail(value)) {
-        return <small className="form-text text-danger">Invalid email format</small>;
+export const number = (value) => {
+    if (!validator.isNumber(value.toString())) {
+        return <small className="form-text text-danger">Invalid number format.</small>;
     }
 };
 
-export const minLength = (value) => {
-    if (value.trim().length < 6) {
-        return <small className="form-text text-danger">Password must be at least 6 characters long</small>;
+export const minLength = (value, minL) => {
+    if (value.trim().length < minL) {
+        return <small className="form-text text-danger">Password must be at least {minL} characters long.</small>;
+    }
+};
+
+export const maxLength = (value, maxL) => {
+    if (value.trim().length > maxL) {
+        return <small className="form-text text-danger">Password cannot be longer than {maxL} characters.</small>;
     }
 };
 export default class Users extends Component {
@@ -81,7 +89,35 @@ export default class Users extends Component {
         });
     }
 
+    cancelUser() {
+        this.setState({
+            name: '',
+            age: '',
+            comment: ''
+        });
+    }
+
+    loadAllUserList() {
+        let self = this;
+        fetch('http://localhost:5000/users', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            self.setState({
+                users: data
+            });
+        }).catch(err => {
+            console.log('caught it!', err);
+            toast.error(err.toString);
+        });
+    }
+
     handleEdit(event) {
+        let self = this;
         //Edit functionality
         console.log('handle edit');
         event.preventDefault();
@@ -113,19 +149,24 @@ export default class Users extends Component {
             return response.json();
         }).then(function(data) {
             console.log(data);
-            if (data === "success") {
-                this.setState({
-                    msg: "User has been submitted."
+            if (data.errors !== undefined && data.errors.length > 0) {
+                let errors = '';
+                data.errors.forEach(function (err) {
+                    toast.error(err.msg);
                 });
+            } else {
+                toast.success('User has been submitted!');
+                self.loadAllUserList();
             }
-            alert('User has been submitted!');
         }).catch(function(err) {
             console.log(err);
+            toast.error(err.toString);
         });
     }
 
     deleteUser(user){
         console.log('delete user');
+        let self = this;
         var data = {
             id: user.id
         };
@@ -140,41 +181,52 @@ export default class Users extends Component {
             }
             return response.json();
         }).then(function(data) {
-            if(data === "success"){
-                this.setState({msg: "User has been deleted."});
+            if (data.errors !== undefined && data.errors.length > 0) {
+                let errors = '';
+                data.errors.forEach(function (err) {
+                    toast.error(err.msg);
+                });
+            } else {
+                toast.success('User has been deleted!');
+                self.loadAllUserList();
             }
-
-            alert('User has been deleted.');
-            window.location.reload();
         }).catch(function(err) {
             console.log(err);
+            toast.error(err.toString);
         });
     }
 
     componentDidMount() {
-        let self = this;
-        fetch('http://localhost:5000/users', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(data) {
-            self.setState({
-                users: data
-            });
-        }).catch(err => {
-            console.log('caught it!', err);
-        })
+        this.loadAllUserList();
     }
 
     render() {
         return (
             <div className="container">
                 <div className="panel panel-default p50 uth-panel">
+                    <h2>New User Info</h2>
+                    <Form onSubmit={this.handleEdit} method="POST">
+                        <FormGroup role="form">
+                            <label>Name</label>
+                            <Input onChange={this.logChange} className="form-control" maxLength="10"
+                                   value={this.state.name} placeholder='Name' name='name' validations={[required]}/>
+                            <label>Age</label>
+                            <Input onChange={this.logChange} className="form-control" maxLength="3" type="number"
+                                   value={this.state.age} placeholder='Age' name='age' validations={[required]}/>
+                            <label>comment</label>
+                            <textarea onChange={this.logChange} className="form-control"
+                                   value={this.state.comment}
+                                   placeholder='comment' name='comment' validations={[required]}/>
+                            <div className="submit-section mt-3 text-center">
+                                <Button className="btn btn-primary mr-3" type="submit">Add User</Button>
+                                <Button className="btn btn-dark" onClick={() => this.cancelUser()}>Cancel</Button>
+                            </div>
+                        </FormGroup>
+                    </Form>
+                </div>
+                <hr />
+                <div className="panel panel-default p50 uth-panel">
                     <h2>User List</h2>
-                    <Button className="btn btn-success float-right" onClick={() => this.openModal({}, 'add')}>Add User</Button>
                     <table className="table table-hover">
                         <thead>
                         <tr>
@@ -197,29 +249,11 @@ export default class Users extends Component {
                                 </td>
                             </tr>
                         )}
-
-                            {/*Modal to edit the user data*/}
-                            <Modal
-                                isOpen={this.state.modalIsOpen}
-                                onRequestClose={this.closeModal}
-                                ariaHideApp={false}
-                                contentLabel="Example Modal" >
-                                <Form onSubmit={this.handleEdit} method="POST">
-                                    <FormGroup role="form">
-                                    <label>Name</label>
-                                    <Input onChange={this.logChange} className="form-control" value={this.state.name} placeholder='Name' name='name' validations={[required]}/>
-                                    <label>Age</label>
-                                    <Input onChange={this.logChange} className="form-control" value={this.state.age} placeholder='Age' name='age' validations={[required]}/>
-                                    <label>comment</label>
-                                    <Input onChange={this.logChange} className="form-control" value={this.state.comment} placeholder='comment' name='comment' validations={[required]}/>
-                                    <div className="submit-section">
-                                        <Button className="btn btn-primary mt-3" type="submit">Submit</Button>
-                                    </div>
-                                    </FormGroup>
-                                </Form>
-                            </Modal>
                         </tbody>
                     </table>
+                </div>
+                <div className="message" style={toastStyle}>
+                    <ToastContainer/>
                 </div>
             </div>
         );
