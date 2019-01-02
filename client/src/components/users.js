@@ -39,48 +39,15 @@ export default class Users extends Component {
         super(props);
         this.state = {
             users: [],
-            modalIsOpen: false,
-            modalMode: '',
             name: '',
             age: '',
             comment: '',
             id: 0
         };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
         // We capture the value and change state as user changes the value here.
         this.logChange = this.logChange.bind(this);
         // Function where we submit data.
         this.handleEdit = this.handleEdit.bind(this);
-    }
-
-    openModal(user, mode) {
-        if (mode === 'add') {
-            this.setState({
-                modalIsOpen: true,
-                modalMode: mode,
-                name: '',
-                age: '',
-                comment: '',
-                id: ''
-            });
-        } else {
-            this.setState({
-                modalIsOpen: true,
-                modalMode: mode,
-                name: user.name,
-                age: user.age,
-                comment: user.comment,
-                id: user.id
-            });
-        }
-    }
-
-    closeModal() {
-        this.setState({
-            modalIsOpen: false
-        });
-        window.location.reload();
     }
 
     logChange(e) {
@@ -125,18 +92,10 @@ export default class Users extends Component {
             name: this.state.name,
             age: this.state.age,
             comment: this.state.comment,
-            id: this.state.id,
-            mode: this.state.modalMode
+            id: this.state.id
         };
-        console.log('data mode:' + data.mode);
 
-        let url = "http://localhost:5000/users/create";
-        if (data.mode === 'edit') {
-            url = "http://localhost:5000/users/edit";
-        }
-
-        console.log("fetch url:" + url);
-        fetch(url, {
+        fetch('http://localhost:5000/users/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -155,7 +114,7 @@ export default class Users extends Component {
                     toast.error(err.msg);
                 });
             } else {
-                toast.success('User has been submitted!');
+                toast.success('User has been added!');
                 self.loadAllUserList();
             }
         }).catch(function(err) {
@@ -188,6 +147,38 @@ export default class Users extends Component {
                 });
             } else {
                 toast.success('User has been deleted!');
+                self.loadAllUserList();
+            }
+        }).catch(function(err) {
+            console.log(err);
+            toast.error(err.toString);
+        });
+    }
+
+    plusAge(userId){
+        console.log('plus user age');
+        let self = this;
+        let data = {
+            id: userId
+        };
+
+        fetch("http://localhost:5000/users/agePlus", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            if (data.errors !== undefined && data.errors.length > 0) {
+                let errors = '';
+                data.errors.forEach(function (err) {
+                    toast.error(err.msg);
+                });
+            } else {
+                toast.success("User's age has been added.");
                 self.loadAllUserList();
             }
         }).catch(function(err) {
@@ -244,7 +235,7 @@ export default class Users extends Component {
                                 <td>{user.name} </td>
                                 <td>{user.age}</td>
                                 <td>{user.comment}</td>
-                                <td><Button className="btn btn-info mr-1" onClick={() => this.openModal(user, 'edit')}>Edit</Button>
+                                <td><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
                                     <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>Delete</Button>
                                 </td>
                             </tr>

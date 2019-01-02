@@ -37,19 +37,17 @@ router.post('/create', userValidator, (req, res, next) => {
 });
 
 
-/* Edit User. */
-router.post('/edit', userValidator,  function (req, res, next) {
+/* Age Plus. */
+router.post('/agePlus', [check('id').not().isEmpty().withMessage('User Id is required.')],
+    function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        // res.status(422);
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
         const sql = "update users" +
-            " set name='" + req.body.name
-            + "',age='" + req.body.age
-            + "',comment='" + req.body.comment
-            + "' where id = '" + req.body.id + "'";
-        console.log('edit user sql:' + sql);
+            " set age=(age + 1)"
+            + " where id = '" + req.body.id + "'";
+        console.log('plus user age sql:' + sql);
         res.locals.connection.query(sql,
             function (error, results, fields) {
                 if (error) throw error;
