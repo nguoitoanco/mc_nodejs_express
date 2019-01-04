@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 
+const MAX_AGE = 999;
+const LIMIT_DEFAULT = 10;
+
 let userValidator = [
     check('name').not().isEmpty().withMessage('Name field is required.'),
     check('name').isLength({ max: 10 }).withMessage('Name field cannot be longer than 10 characters.'),
@@ -14,10 +17,22 @@ let userValidator = [
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    res.locals.connection.query('SELECT * from users', function (error, results, fields) {
+    let limit = req.query.limit;
+    if (!limit) {
+        limit = LIMIT_DEFAULT;
+    }
+
+    res.locals.connection.query('SELECT count(id) totalUsers from users', function (error, results, fields) {
         if (error) throw error;
-        res.send(JSON.stringify(results));
+        let totalUsers = results[0].totalUsers;
+        res.locals.connection.query('SELECT * from users order by updatedate desc LIMIT ?', Number(limit), function (error, results, fields) {
+            if (error) throw error;
+            let response = {totalUsers: totalUsers, users: results};
+            res.send(JSON.stringify(response));
+        });
     });
+
+
 });
 
 /* Create new User. */
@@ -27,9 +42,9 @@ router.post('/create', userValidator, (req, res, next) => {
         // res.status(422);
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
-        const insertSql = "insert into users(name,age,comment)" +
-            " values('" + req.body.name + "','" + req.body.age + "','" + req.body.comment + "')";
-        res.locals.connection.query(insertSql, function (error, results, fields) {
+        const insertSql = 'insert into users(name,age,comment,createdate,updatedate) values(?,?,?,NOW(),NOW())';
+        const values = [req.body.name, req.body.age, req.body.comment];
+        res.locals.connection.query(insertSql, values, function (error, results, fields) {
             if (error) throw error;
             res.send(JSON.stringify(results));
         });
@@ -44,13 +59,14 @@ router.post('/agePlus', [check('id').not().isEmpty().withMessage('User Id is req
     if (!errors.isEmpty()) {
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
-        const sql = "update users" +
-            " set age=(age + 1)"
-            + " where id = '" + req.body.id + "'";
+        const sql = 'update users set age=(age + 1), updatedate=NOW() where id = ? and age < ? ';
         console.log('plus user age sql:' + sql);
-        res.locals.connection.query(sql,
+        res.locals.connection.query(sql, [req.body.id, MAX_AGE],
             function (error, results, fields) {
                 if (error) throw error;
+                // if (results.message['Rows matched'] === '0') {
+                //     res.send(JSON.stringify({ errors: [''] }));
+                // }
                 res.send(JSON.stringify(results));
             }
         );
@@ -64,8 +80,8 @@ router.post('/delete', [check('id').not().isEmpty().withMessage('User Id is requ
         // res.status(422);
         res.send(JSON.stringify({errors: errors.array()}));
     } else {
-        const deleteSql = "DELETE from users where id = '" + req.body.id + "'";
-        res.locals.connection.query(deleteSql, function (error, results, fields) {
+        const deleteSql = 'DELETE from users where id = ?';
+        res.locals.connection.query(deleteSql, req.body.id, function (error, results, fields) {
                 if (error) throw error;
                 res.send(JSON.stringify(results));
             }

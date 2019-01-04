@@ -30,6 +30,8 @@
     transform: rotate(360deg);
   }
 }
-.message {
-  color: white !important;
+.textarea_wrap {
+  white-space: pre-line;
 }
+
+.hidden { display:none; }

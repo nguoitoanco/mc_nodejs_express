@@ -42,10 +42,14 @@ export default class Users extends Component {
             name: '',
             age: '',
             comment: '',
-            id: 0
+            id: 0,
+            limit: 10,
+            btnShowMoreTitle: 'Show more users',
+            totalUsers:0
         };
         // We capture the value and change state as user changes the value here.
         this.logChange = this.logChange.bind(this);
+        this.LoadMoreUsersButton = this.LoadMoreUsersButton.bind(this);
         // Function where we submit data.
         this.handleEdit = this.handleEdit.bind(this);
     }
@@ -64,9 +68,9 @@ export default class Users extends Component {
         });
     }
 
-    loadAllUserList() {
+    fetchUserList(callback) {
         let self = this;
-        fetch('http://localhost:5000/users', {
+        fetch('http://localhost:5000/users?limit=' + self.state.limit, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -75,12 +79,18 @@ export default class Users extends Component {
             return response.json();
         }).then(function(data) {
             self.setState({
-                users: data
+                totalUsers: data.totalUsers,
+                users: data.users,
+                limit: data.users.length
             });
         }).catch(err => {
             console.log('caught it!', err);
             toast.error(err.toString);
         });
+
+        if (typeof callback === 'function') {
+            return callback();
+        }
     }
 
     handleEdit(event) {
@@ -115,7 +125,7 @@ export default class Users extends Component {
                 });
             } else {
                 toast.success('User has been added!');
-                self.loadAllUserList();
+                self.fetchUserList();
             }
         }).catch(function(err) {
             console.log(err);
@@ -147,7 +157,7 @@ export default class Users extends Component {
                 });
             } else {
                 toast.success('User has been deleted!');
-                self.loadAllUserList();
+                self.fetchUserList();
             }
         }).catch(function(err) {
             console.log(err);
@@ -179,7 +189,7 @@ export default class Users extends Component {
                 });
             } else {
                 toast.success("User's age has been added.");
-                self.loadAllUserList();
+                self.fetchUserList();
             }
         }).catch(function(err) {
             console.log(err);
@@ -188,7 +198,28 @@ export default class Users extends Component {
     }
 
     componentDidMount() {
-        this.loadAllUserList();
+        this.fetchUserList();
+    }
+
+    loadMoreUsers() {
+        let self = this;
+        self.state.limit = this.state.limit + 10;
+        self.setState({
+            btnShowMoreTitle: 'Loading more user'
+        });
+        self.fetchUserList(function () {
+            self.setState({
+                btnShowMoreTitle: 'Show more user'
+            });
+        });
+    }
+
+    LoadMoreUsersButton() {
+        if (this.state.limit < this.state.totalUsers) {
+            return <Button className="btn btn-primary" onClick={() => this.loadMoreUsers()}>
+                {this.state.btnShowMoreTitle}</Button>;
+        }
+        return '';
     }
 
     render() {
@@ -220,21 +251,13 @@ export default class Users extends Component {
                     <h2>User List</h2>
                     <table className="table table-hover">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Comment</th>
-                            <th>Actions</th>
-                        </tr>
                         </thead>
                         <tbody>
                         {this.state.users.map(user =>
                             <tr key={user.id}>
                                 <td>{user.id} </td>
-                                <td>{user.name} </td>
-                                <td>{user.age}</td>
-                                <td>{user.comment}</td>
+                                <td>{user.name} ({user.age}) </td>
+                                <td className="textarea_wrap">{user.comment}</td>
                                 <td><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
                                     <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>Delete</Button>
                                 </td>
@@ -243,6 +266,11 @@ export default class Users extends Component {
                         </tbody>
                     </table>
                 </div>
+                <div className="action text-center mb-3">
+                    <this.LoadMoreUsersButton/>
+                </div>
+
+
                 <div className="message" style={toastStyle}>
                     <ToastContainer/>
                 </div>
