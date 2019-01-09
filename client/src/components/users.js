@@ -80,9 +80,12 @@ export default class Users extends Component {
         }).then(function(data) {
             self.setState({
                 totalUsers: data.totalUsers,
-                users: data.users,
-                limit: data.users.length
+                users: data.users
             });
+
+            // Reset limit search.
+            self.state.limit = data.users.length < 10 ? 10 : data.users.length;
+
         }).catch(err => {
             console.log('caught it!', err);
             toast.error(err.toString);

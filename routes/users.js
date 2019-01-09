@@ -61,15 +61,12 @@ router.post('/agePlus', [check('id').not().isEmpty().withMessage('User Id is req
     if (!errors.isEmpty()) {
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
-        const sql = 'update users set age=(age + 1), updatedate=NOW() where id = ? and age < ? ';
+        const sql = 'update users set age=(age + 1) where id = ? and age < ? ';
         console.log('plus user age sql:' + sql);
         res.locals.connection.query(sql, [req.body.id, MAX_AGE],
             function (error, results, fields) {
                 res.locals.connection.end();
                 if (error) throw error;
-                // if (results.message['Rows matched'] === '0') {
-                //     res.send(JSON.stringify({ errors: [''] }));
-                // }
                 res.send(JSON.stringify(results));
             }
         );
