@@ -9,7 +9,7 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Multilanguage} from "./Multilanguage";
 import Langs from './language';
-import type {callback} from "./Multilanguage";
+
 
 const toastStyle = {
     fontFamily: 'sans-serif',
@@ -39,7 +39,7 @@ export const maxLength = (value, maxL) => {
     }
 };
 
-export default class Users extends Component implements callback {
+export default class Users extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -60,9 +60,6 @@ export default class Users extends Component implements callback {
         this.handleEdit = this.handleEdit.bind(this);
     }
 
-    changeLang() {
-        alert('change language to:');
-    }
     logChange(e) {
         this.setState({
             [e.target.name]: e.target.value //setting value edited by the admin in state.
@@ -234,14 +231,17 @@ export default class Users extends Component implements callback {
         return '';
     }
 
-    setCurrentLanguage() {
-        alert('change language');
+    changeLanguage(language) {
+        console.log('click change language to:' + language);
+        this.setState({
+            currentLanguage:language
+        });
     }
 
     render() {
         return (
             <div className="container">
-                <Multilanguage framework="React" compiler="TypeScript"/>
+                <Multilanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
                 <div className="panel panel-default p50 uth-panel mt-lg-1">
                     <h2>{Langs[this.state.currentLanguage]["lbl.user.list"]}</h2>
                     <Form onSubmit={this.handleEdit} method="POST">
