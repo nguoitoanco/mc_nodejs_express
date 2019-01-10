@@ -1,9 +1,13 @@
 import {MultilanguageState} from './MultilanguageState';
 import {Pivot, PivotItem} from 'office-ui-fabric-react';
 import React, {Component} from 'react';
+import language from "./language";
 
-export interface callback {selectedLanguage: string}
-export interface MultilanguageProps { compiler: string; framework: string; onchange: callback}
+export interface callback {
+    selectedLanguage: string,
+    changeLang();
+}
+export interface MultilanguageProps { compiler: string; framework: string}
 // 'MultilanguageProps' describes the shape of props.
 // State is never set so we use the 'undefined' type.
 export class Multilanguage extends Component<MultilanguageProps, MultilanguageState> {
@@ -60,7 +64,7 @@ export class Multilanguage extends Component<MultilanguageProps, MultilanguageSt
         this.setState({
             currentLanguage: languageSelected
         });
-        return this.callback(languageSelected);
+        return this.callback.changeLang();
 
     }
 }

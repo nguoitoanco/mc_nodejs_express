@@ -60,6 +60,9 @@ export default class Users extends Component implements callback {
         this.handleEdit = this.handleEdit.bind(this);
     }
 
+    changeLang() {
+        alert('change language to:');
+    }
     logChange(e) {
         this.setState({
             [e.target.name]: e.target.value //setting value edited by the admin in state.
