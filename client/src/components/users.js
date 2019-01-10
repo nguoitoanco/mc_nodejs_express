@@ -5,8 +5,12 @@ import Input from 'react-validation/build/input';
 import {Button, FormGroup} from 'react-bootstrap';
 import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ToastContainer, toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {Multilanguage} from "./Multilanguage";
+import Langs from './language';
+import type {callback} from "./Multilanguage";
+
 const toastStyle = {
     fontFamily: 'sans-serif',
     color: '#FFFFFF'
@@ -34,7 +38,8 @@ export const maxLength = (value, maxL) => {
         return <small className="form-text text-danger">Password cannot be longer than {maxL} characters.</small>;
     }
 };
-export default class Users extends Component {
+
+export default class Users extends Component implements callback {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +50,8 @@ export default class Users extends Component {
             id: 0,
             limit: 10,
             btnShowMoreTitle: 'Show more users',
-            totalUsers:0
+            totalUsers:0,
+            currentLanguage: 0
         };
         // We capture the value and change state as user changes the value here.
         this.logChange = this.logChange.bind(this);
@@ -225,11 +231,16 @@ export default class Users extends Component {
         return '';
     }
 
+    setCurrentLanguage() {
+        alert('change language');
+    }
+
     render() {
         return (
             <div className="container">
-                <div className="panel panel-default p50 uth-panel">
-                    <h2>New User Info</h2>
+                <Multilanguage framework="React" compiler="TypeScript"/>
+                <div className="panel panel-default p50 uth-panel mt-lg-1">
+                    <h2>{Langs[this.state.currentLanguage]["lbl.user.list"]}</h2>
                     <Form onSubmit={this.handleEdit} method="POST">
                         <FormGroup role="form">
                             <label>Name</label>
