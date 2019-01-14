@@ -84,7 +84,7 @@ export default class Users extends Component {
 
         }).catch(err => {
             console.log('caught it!', err);
-            toast.error(err.toString);
+            toast.error(err.message);
         });
 
         if (typeof callback === 'function') {
@@ -132,7 +132,7 @@ export default class Users extends Component {
             }
         }).catch(function(err) {
             console.log(err);
-            toast.error(err.toString);
+            toast.error(err.message);
         });
     }
 
@@ -164,7 +164,7 @@ export default class Users extends Component {
             }
         }).catch(function(err) {
             console.log(err);
-            toast.error(err.toString);
+            toast.error(err.message);
         });
     }
 
@@ -196,7 +196,7 @@ export default class Users extends Component {
             }
         }).catch(function(err) {
             console.log(err);
-            toast.error(err.toString);
+            toast.error(err.message);
         });
     }
 
