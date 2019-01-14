@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Multilanguage} from "./Multilanguage";
 import Langs from './language';
 
-
+const BASE_API_URL = 'http://localhost:5000/';
 const toastStyle = {
     fontFamily: 'sans-serif',
     color: '#FFFFFF'
@@ -66,7 +66,7 @@ export default class Users extends Component {
 
     fetchUserList(callback) {
         let self = this;
-        fetch('http://localhost:5000/users?limit=' + self.state.limit, {
+        fetch(BASE_API_URL + 'users?limit=' + self.state.limit, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -108,7 +108,7 @@ export default class Users extends Component {
             id: this.state.id
         };
 
-        fetch('http://localhost:5000/users/create', {
+        fetch(BASE_API_URL + 'users/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -143,7 +143,7 @@ export default class Users extends Component {
             id: user.id
         };
 
-        fetch("http://localhost:5000/users/delete", {
+        fetch(BASE_API_URL + "users/delete", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -175,7 +175,7 @@ export default class Users extends Component {
             id: userId
         };
 
-        fetch("http://localhost:5000/users/agePlus", {
+        fetch(BASE_API_URL + "users/agePlus", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
