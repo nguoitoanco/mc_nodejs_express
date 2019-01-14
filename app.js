@@ -17,9 +17,9 @@ var mysql = require("mysql");
 //Database connection
 app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
+        host: '172.104.47.73',
+        user: 'mcuser',
+        password: 'mcuser',
         database: 'node_js'
     });
     // Website you wish to allow to connect
