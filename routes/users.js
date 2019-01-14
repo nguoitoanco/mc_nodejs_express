@@ -40,7 +40,6 @@ router.get('/', function (req, res, next) {
 router.post('/create', userValidator, (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        // res.status(422);
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
         const insertSql = 'insert into users(name,age,comment,createdate,updatedate) values(?,?,?,NOW(),NOW())';
@@ -61,15 +60,29 @@ router.post('/agePlus', [check('id').not().isEmpty().withMessage('User Id is req
     if (!errors.isEmpty()) {
         res.send(JSON.stringify({ errors: errors.array() }));
     } else {
-        const sql = 'update users set age=(age + 1) where id = ? and age < ? ';
-        console.log('plus user age sql:' + sql);
-        res.locals.connection.query(sql, [req.body.id, MAX_AGE],
-            function (error, results, fields) {
+        // Check current age user before adding.
+        res.locals.connection.query('SELECT age from users where id = ?', req.body.id, function (error, results, fields) {
+            if (error) throw error;
+            let age = results[0].age;
+
+            // In case age >= 999 return error.
+            if (age >= MAX_AGE) {
                 res.locals.connection.end();
-                if (error) throw error;
-                res.send(JSON.stringify(results));
+                res.send(JSON.stringify({errors: [{'msg': 'Age field cannot be longer than 3 characters.'}]}));
+            } else {
+                // In case age < 999, process adding age.
+                const sql = 'update users set age=(age + 1) where id = ? ';
+                console.log('plus user age sql:' + sql);
+                res.locals.connection.query(sql, [req.body.id],
+                    function (error, results, fields) {
+                        res.locals.connection.end();
+                        if (error) throw error;
+                        res.send(JSON.stringify(results));
+                    }
+                );
             }
-        );
+
+        });
     }
 });
 

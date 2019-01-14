@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import './users.css';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
-import {Button, FormGroup} from 'react-bootstrap';
+import Textarea from 'react-validation/build/textarea';
+import {Button} from 'react-bootstrap';
+import CheckButton from 'react-validation/build/button';
 import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {toast, ToastContainer} from "react-toastify";
@@ -15,27 +17,15 @@ const toastStyle = {
     fontFamily: 'sans-serif',
     color: '#FFFFFF'
 };
-export const required = (value) => {
+const required = (value) => {
     if (validator.isEmpty(value.toString())) {
-        return <small className="form-text text-danger">This field is required.</small>;
+        return <small className="form-text text-danger">Field is required.</small>;
     }
 };
 
-export const number = (value) => {
-    if (!validator.isNumber(value.toString())) {
-        return <small className="form-text text-danger">Invalid number format.</small>;
-    }
-};
-
-export const minLength = (value, minL) => {
-    if (value.trim().length < minL) {
-        return <small className="form-text text-danger">Password must be at least {minL} characters long.</small>;
-    }
-};
-
-export const maxLength = (value, maxL) => {
-    if (value.trim().length > maxL) {
-        return <small className="form-text text-danger">Password cannot be longer than {maxL} characters.</small>;
+const number = (value) => {
+    if (!validator.isNumeric(value.toString())) {
+        return <small className="form-text text-danger">Field is invalid number format.</small>;
     }
 };
 
@@ -104,6 +94,10 @@ export default class Users extends Component {
 
     handleEdit(event) {
         let self = this;
+        // self.form.validateAll();
+        // if ( this.checkBtn.context._errors.length > 0 ) {
+        //     return;
+        // }
         //Edit functionality
         console.log('handle edit');
         event.preventDefault();
@@ -133,7 +127,7 @@ export default class Users extends Component {
                     toast.error(err.msg);
                 });
             } else {
-                toast.success('User has been added!');
+                toast.success(Langs[self.state.currentLanguage]["msg.user.added"]);
                 self.fetchUserList();
             }
         }).catch(function(err) {
@@ -165,7 +159,7 @@ export default class Users extends Component {
                     toast.error(err.msg);
                 });
             } else {
-                toast.success('User has been deleted!');
+                toast.success(Langs[self.state.currentLanguage]["msg.user.deleted"]);
                 self.fetchUserList();
             }
         }).catch(function(err) {
@@ -197,7 +191,7 @@ export default class Users extends Component {
                     toast.error(err.msg);
                 });
             } else {
-                toast.success("User's age has been added.");
+                toast.success(Langs[self.state.currentLanguage]["msg.user.age.added"]);
                 self.fetchUserList();
             }
         }).catch(function(err) {
@@ -213,20 +207,13 @@ export default class Users extends Component {
     loadMoreUsers() {
         let self = this;
         self.state.limit = this.state.limit + 10;
-        self.setState({
-            btnShowMoreTitle: 'Loading more user'
-        });
-        self.fetchUserList(function () {
-            self.setState({
-                btnShowMoreTitle: 'Show more user'
-            });
-        });
+        self.fetchUserList();
     }
 
     LoadMoreUsersButton() {
         if (this.state.limit < this.state.totalUsers) {
             return <Button className="btn btn-primary" onClick={() => this.loadMoreUsers()}>
-                {this.state.btnShowMoreTitle}</Button>;
+                {Langs[this.state.currentLanguage]["btn.show.more.users"]}</Button>;
         }
         return '';
     }
@@ -239,33 +226,40 @@ export default class Users extends Component {
     }
 
     render() {
+        let currLanguages = Langs[this.state.currentLanguage];
         return (
             <div className="container">
                 <Multilanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
                 <div className="panel panel-default p50 uth-panel mt-lg-1">
-                    <h2>{Langs[this.state.currentLanguage]["lbl.user.list"]}</h2>
-                    <Form onSubmit={this.handleEdit} method="POST">
-                        <FormGroup role="form">
-                            <label>Name</label>
+                    <h2>{currLanguages["lbl.user.list"]}</h2>
+                    <div className="alert alert-success">
+                        <strong>{currLanguages["msg.inform.create.user"]}</strong>.
+                    </div>
+                    <Form onSubmit={this.handleEdit.bind(this)} ref={c => { this.form = c }} method="POST">
+                        <div className="form-group">
+                            <label>{currLanguages["lbl.name"]}</label>
                             <Input onChange={this.logChange} className="form-control" maxLength="10"
-                                   value={this.state.name} placeholder='Name' name='name' validations={[required]}/>
-                            <label>Age</label>
+                                   value={this.state.name} placeholder={currLanguages["lbl.name"]} name='name' validations={[required]}/>
+                        </div>
+                        <div className="form-group">
+                            <label>{currLanguages["lbl.age"]}</label>
                             <Input onChange={this.logChange} className="form-control" maxLength="3" type="number"
-                                   value={this.state.age} placeholder='Age' name='age' validations={[required]}/>
-                            <label>comment</label>
-                            <textarea onChange={this.logChange} className="form-control"
-                                   value={this.state.comment}
-                                   placeholder='comment' name='comment' validations={[required]}/>
-                            <div className="submit-section mt-3 text-center">
-                                <Button className="btn btn-primary mr-3" type="submit">Add User</Button>
-                                <Button className="btn btn-dark" onClick={() => this.cancelUser()}>Cancel</Button>
-                            </div>
-                        </FormGroup>
+                                   value={this.state.age} placeholder={currLanguages["lbl.age"]} name="age" validations={[required, number]}/>
+                        </div>
+                        <div className="form-group">
+                            <label>{currLanguages["lbl.comment"]}</label>
+                            <Textarea onChange={this.logChange} className="form-control" value={this.state.comment}
+                                      placeholder={currLanguages["lbl.comment"]} name='comment' validations={[required]}/>
+                        </div>
+                        <div className="submit-section mt-3 text-center">
+                            <CheckButton className="btn btn-primary mr-3" type="submit">{currLanguages["btn.create.user"]}</CheckButton>
+                            <Button className="btn btn-dark" onClick={() => this.cancelUser()}>{currLanguages["btn.cancel"]}</Button>
+                        </div>
                     </Form>
                 </div>
                 <hr />
                 <div className="panel panel-default p50 uth-panel">
-                    <h2>User List</h2>
+                    <h2>{currLanguages["lbl.user.list"]}</h2>
                     <table className="table table-hover">
                         <thead>
                         </thead>
@@ -276,7 +270,7 @@ export default class Users extends Component {
                                 <td>{user.name} ({user.age}) </td>
                                 <td className="textarea_wrap">{user.comment}</td>
                                 <td><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
-                                    <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>Delete</Button>
+                                    <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>{currLanguages["btn.delete"]}</Button>
                                 </td>
                             </tr>
                         )}
@@ -286,7 +280,6 @@ export default class Users extends Component {
                 <div className="action text-center mb-3">
                     <this.LoadMoreUsersButton/>
                 </div>
-
 
                 <div className="message" style={toastStyle}>
                     <ToastContainer/>

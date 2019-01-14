@@ -43,8 +43,6 @@ export class Multilanguage extends Component<MultilanguageProps, MultilanguageSt
                     <PivotItem linkText='JAPANESE' itemIcon='TextBox' itemKey='jp'>
                     </PivotItem>
                 </Pivot>
-                {/*<h1>{t[this.state.currentLanguage].welcome} {this.props.compiler} {this.props.framework} App!</h1>*/}
-                {/*<h2>{t[this.state.currentLanguage].description}</h2>*/}
             </div>
         );
     }
