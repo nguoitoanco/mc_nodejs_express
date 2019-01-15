@@ -6,6 +6,10 @@ const language = [
         'lbl.comment': 'Comment',
         'lbl.new.user.info': 'New User Info',
         'lbl.user.list': 'User List',
+        'lbl.login.page': 'Login Page',
+        'lbl.user.name': 'User Name',
+        'lbl.user.password': 'Password',
+        'btn.login': 'Login',
         'btn.add.user': 'Add User',
         'btn.cancel': 'Cancel',
         'btn.show.more.users': 'Show more users',
@@ -18,7 +22,10 @@ const language = [
         'msg.user.deleted': 'User has been deleted.',
         'msg.user.age.added': 'User age has been added one.',
         'msg.require': 'This field is required.',
-        'msg.inform.create.user': 'You have to input all valid information to create new user.'
+        'msg.inform.create.user': 'You have to input all valid information to create new user.',
+        'msg.login.success': 'Login successfully!',
+        'msg.login.error': 'User name or password is wrong.',
+        'msg.require.login': 'You must login first.'
     },
     // Japanese
     {
