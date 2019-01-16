@@ -293,7 +293,7 @@ export default class Users extends Component {
                             <tr className="d-flex" key={user.id}>
                                 <td className="col-md-2">{user.id} </td>
                                 <td className="col-md-3">{user.name} ({user.age}) </td>
-                                <td className="textarea_wrap col-md-5 text-wrap">{user.comment}</td>
+                                <td className="textarea_wrap col-md-5">{user.comment}</td>
                                 <td className="col-md-2"><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
                                     <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>{currLanguages["btn.delete"]}</Button>
                                 </td>
