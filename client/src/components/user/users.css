@@ -42,3 +42,7 @@
 .modal-container .modal, .modal-container .modal-backdrop {
   position: absolute;
 }
+
+.word-break {
+  word-break: break-all;
+}
