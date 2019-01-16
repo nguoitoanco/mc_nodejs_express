@@ -10,8 +10,8 @@ import {LANGUAGE} from "../language/multiLanguage";
 import Langs from '../language/language';
 import Modal from "react-modal";
 import {Button} from "react-bootstrap";
+import {BASE_API_URL} from '../constant';
 
-const BASE_API_URL = 'http://localhost:5000/';
 const customStyles = {
     content : {
         top                   : '50%',

@@ -4,7 +4,6 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Textarea from 'react-validation/build/textarea';
 import {Button} from 'react-bootstrap';
-import Modal from 'react-modal';
 import CheckButton from 'react-validation/build/button';
 import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,8 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {LANGUAGE, MultiLanguage} from "../language/multiLanguage";
 import Langs from '../language/language';
 import Login from '../admin/login';
+import {BASE_API_URL} from '../constant';
 
-const BASE_API_URL = 'http://localhost:5000/';
 const LOGIN_TOKEN_KEY = 'mc.node.js.express.login.token';
 const toastStyle = {
     fontFamily: 'sans-serif',
@@ -127,7 +126,6 @@ export default class Users extends Component {
         }).then(function(data) {
             console.log(data);
             if (data.errors !== undefined && data.errors.length > 0) {
-                let errors = '';
                 data.errors.forEach(function (err) {
                     toast.error(err.msg);
                 });
@@ -162,7 +160,6 @@ export default class Users extends Component {
             return response.json();
         }).then(function(data) {
             if (data.errors !== undefined && data.errors.length > 0) {
-                let errors = '';
                 data.errors.forEach(function (err) {
                     toast.error(err.msg);
                 });
@@ -197,7 +194,6 @@ export default class Users extends Component {
             return response.json();
         }).then(function(data) {
             if (data.errors !== undefined && data.errors.length > 0) {
-                let errors = '';
                 data.errors.forEach(function (err) {
                     toast.error(err.msg);
                 });
