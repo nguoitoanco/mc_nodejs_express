@@ -10,8 +10,8 @@ import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {Multilanguage} from "../multilanguage/Multilanguage";
-import Langs from '../multilanguage/language';
+import {LANGUAGE, MultiLanguage} from "../language/multiLanguage";
+import Langs from '../language/language';
 import Login from '../admin/login';
 
 const BASE_API_URL = 'http://localhost:5000/';
@@ -43,8 +43,11 @@ export default class Users extends Component {
             id: 0,
             limit: 10,
             totalUsers:0,
-            currentLanguage: 0
+            currentLanguage: LANGUAGE.ENGLISH
         };
+
+        // set current language
+        localStorage.setItem('mc.node.js.express.language', LANGUAGE.ENGLISH);
         // We capture the value and change state as user changes the value here.
         this.logChange = this.logChange.bind(this);
         this.LoadMoreUsersButton = this.LoadMoreUsersButton.bind(this);
@@ -233,16 +236,27 @@ export default class Users extends Component {
         });
     }
 
+    loginSuccess(language) {
+        console.log('Login success.');
+        this.fetchUserList();
+    }
+
     render() {
         let currLanguages = Langs[this.state.currentLanguage];
         return (
             <div className="container">
-                <Multilanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
-                <Login />
+                <div className="row">
+                <div className="col-sm-10 text-center">
+                    <MultiLanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
+                </div>
+                <div className="col-sm-2 text-right">
+                    <Login  onClick={this.loginSuccess.bind(this)} />
+                </div>
+                </div>
                 <div className="panel panel-default p50 uth-panel mt-lg-1">
                     <h2>{currLanguages["lbl.new.user.info"]}</h2>
                     <div className="alert alert-success">
-                        <strong>{currLanguages["msg.inform.create.user"]}</strong>.
+                        <strong>{currLanguages["msg.inform.create.user"]}</strong>
                     </div>
                     <Form onSubmit={this.handleEdit.bind(this)} ref={c => { this.form = c }} method="POST">
                         <div className="form-group">
@@ -271,6 +285,12 @@ export default class Users extends Component {
                     <h2>{currLanguages["lbl.user.list"]}</h2>
                     <table className="table table-hover">
                         <thead>
+                            <tr>
+                                <th>{currLanguages["lbl.user.id"]}</th>
+                                <th>{currLanguages["lbl.user.name.age"]}</th>
+                                <th>{currLanguages["lbl.comment"]}</th>
+                                <th>{currLanguages["lbl.action"]}</th>
+                            </tr>
                         </thead>
                         <tbody>
                         {this.state.users.map(user =>

@@ -1,19 +1,22 @@
-import {MultilanguageState} from './MultilanguageState';
+import {LanguageState} from './languageState';
 import {Pivot, PivotItem} from 'office-ui-fabric-react';
 import React, {Component} from 'react';
-import language from "./language";
 
+export const LANGUAGE = {
+    ENGLISH: 0,
+    JAPANESE: 1
+};
 export interface MultilanguageProps { compiler: string; framework: string}
 // 'MultilanguageProps' describes the shape of props.
 // State is never set so we use the 'undefined' type.
-export class Multilanguage extends Component<MultilanguageProps, MultilanguageState> {
+export class MultiLanguage extends Component<MultilanguageProps, LanguageState> {
 
-    constructor(props: MultilanguageProps, state: MultilanguageState) {
+    constructor(props: MultilanguageProps, state: LanguageState) {
         super(props);
 
         this.state = {
             status: '',
-            currentLanguage: 0,
+            currentLanguage: LANGUAGE.ENGLISH,
         };
 
         //this._getErrorMessage = this._getErrorMessage.bind(this);
@@ -25,22 +28,22 @@ export class Multilanguage extends Component<MultilanguageProps, MultilanguageSt
         let favoriteLanguage = 'en'; //this.getUrlQueryString('SPLanguage');
         if (favoriteLanguage.search(/en/i) > -1) {
             this.setState({
-                currentLanguage: 0
+                currentLanguage: LANGUAGE.ENGLISH
             });
         } else {
             this.setState({
-                currentLanguage: 1
+                currentLanguage: LANGUAGE.JAPANESE
             });
         }
     }
 
     render() {
         return (
-            <div className="text-right">
+            <div>
                 <Pivot onLinkClick={ this.onLinkClick.bind(this) }>
-                    <PivotItem linkText='ENGLISH' itemIcon='TextBox' itemKey='en'>
+                    <PivotItem linkText='ENGLISH' itemIcon='TextBox' itemKey='en' aria-selected="false">
                     </PivotItem>
-                    <PivotItem linkText='JAPANESE' itemIcon='TextBox' itemKey='jp'>
+                    <PivotItem linkText='日本語' itemIcon='TextBox' itemKey='jp' aria-selected="true">
                     </PivotItem>
                 </Pivot>
             </div>
@@ -49,15 +52,17 @@ export class Multilanguage extends Component<MultilanguageProps, MultilanguageSt
 
     onLinkClick(item: PivotItem): void {
         console.log(item.props.linkText);
-        let languageSelected = 0;
+        let languageSelected = LANGUAGE.ENGLISH;
         switch (item.props.itemKey) {
             case "jp":
-                languageSelected = 1;
+                languageSelected = LANGUAGE.JAPANESE;
                 break;
         }
         this.setState({
             currentLanguage: languageSelected
         });
-        this.props.onClick(languageSelected) ;
+
+        localStorage.setItem('mc.node.js.express.language', languageSelected);
+        this.props.onClick(languageSelected);
     }
 }

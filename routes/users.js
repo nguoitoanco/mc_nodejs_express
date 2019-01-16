@@ -103,29 +103,30 @@ router.post('/delete', checkAuth, [check('id').not().isEmpty().withMessage('User
 });
 
 function checkAuth(req, res, next) {
-    if (session.users && session.users[req.body.token]) {
+    if (session.users && session.users[req.query.token]) {
         next();
     } else {
         next(createError(401));
     }
 }
 
-router.get('/my_secret_page', checkAuth, function (req, res) {
-    res.send('if you are viewing this page it means you are logged in');
-});
-
 router.post('/login', function (req, res) {
     var post = req.body;
-    if (post.user === 'admin' && post.password === 'admin') {
-        const token = new TokenGenerator().generate(); // Default is a 128-bit token encoded in base58
-        if (!session.users) {
-            session.users = {};
+    res.locals.connection.query('SELECT count(id) as countAdmin from admin WHERE username=? AND password=?'
+        , [req.body.username, req.body.password], function (error, results, fields) {
+        if (error) throw error;
+        let countAdmin = results[0].countAdmin;
+        if (countAdmin > 0) {
+            const token = new TokenGenerator().generate(); // Default is a 128-bit token encoded in base58
+            if (!session.users) {
+                session.users = {};
+            }
+            session.users[token]= {user: 'admin'};
+            res.send({loginResult:true, loginToken: token});
+        } else {
+            res.send({loginResult:false});
         }
-        session.users[token]= {user: 'admin'};
-        res.send({loginResult:true, loginToken: token});
-    } else {
-        res.send({loginResult:false});
-    }
+    });
 });
 
 module.exports = router;

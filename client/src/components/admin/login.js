@@ -4,11 +4,10 @@ import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import validator from 'validator';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {Multilanguage} from "../multilanguage/Multilanguage";
-import Langs from '../multilanguage/language';
-import {Redirect} from "react-router-dom";
+import {LANGUAGE} from "../language/multiLanguage";
+import Langs from '../language/language';
 import Modal from "react-modal";
 import {Button} from "react-bootstrap";
 
@@ -55,8 +54,8 @@ export default class Login extends Component {
         let self = this;
         event.preventDefault();
         let data = {
-            name: this.state.username,
-            age: this.state.password
+            username: this.state.username,
+            password: this.state.password
         };
 
         fetch(BASE_API_URL + 'users/login', {
@@ -73,10 +72,13 @@ export default class Login extends Component {
         }).then(function(response) {
             console.log(response);
             if (response.loginResult) {
-                toast.error(Langs[self.state.currentLanguage]["msg.login.success"]);
+                localStorage.setItem('mc.node.js.express.login.token', response.loginToken);
+                toast.success(Langs[self.state.currentLanguage]["msg.login.success"]);
+                self.onCloseModal();
+                self.props.onClick();
             } else {
-                localStorage.set('mc.node.js.express.login.token', response.loginToken);
-                toast.success(Langs[self.state.currentLanguage]["msg.login.error"]);
+                localStorage.setItem('mc.node.js.express.login.token', '');
+                toast.error(Langs[self.state.currentLanguage]["msg.login.error"]);
             }
         }).catch(function(err) {
             console.log(err);
@@ -88,13 +90,6 @@ export default class Login extends Component {
         this.setState({
             username:'',
             password:''
-        });
-    }
-
-    changeLanguage(language) {
-        console.log('click change language to:' + language);
-        this.setState({
-            currentLanguage:language
         });
     }
 
@@ -111,34 +106,34 @@ export default class Login extends Component {
     }
 
     render() {
-        let currLanguages = Langs[this.state.currentLanguage];
+        console.log('render login');
+        let currentLang = localStorage.getItem('mc.node.js.express.language');
+        if (!currentLang) {
+            currentLang = LANGUAGE.ENGLISH;
+        }
         return (
-            <div className="container">
-                <Button onClick={this.onOpenModal}>Login</Button>
+            <div className="container text-right">
+                <Button className="btn mt-1" onClick={this.onOpenModal}>{Langs[currentLang]["btn.login"]}</Button>
                 <Modal className="modal-sm col-sm-6 mb-3" style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.onCloseModal} ariaHideApp={false} contentLabel="Example Modal" >
                     <div className="panel panel-default">
-                        <h2>{currLanguages["lbl.login.page"]}</h2>
+                        <h2>{Langs[currentLang]["lbl.login.page"]}</h2>
                         <Form onSubmit={this.doLogin.bind(this)} ref={c => { this.form = c }} method="POST">
                             <div className="form-group">
-                                <label>{currLanguages["lbl.user.name"]}</label>
-                                <Input onChange={this.logChange} className="form-control" maxLength="10"
-                                       value={this.state.username} placeholder={currLanguages["lbl.user.name"]} name='username' validations={[required]}/>
+                                <label>{Langs[currentLang]["lbl.user.name"]}</label>
+                                <Input onChange={this.logChange} className="form-control"
+                                       value={this.state.username} placeholder={Langs[currentLang]["lbl.user.name"]} name='username' validations={[required]}/>
                             </div>
                             <div className="form-group">
-                                <label>{currLanguages["lbl.user.password"]}</label>
-                                <Input onChange={this.logChange} className="form-control" maxLength="3" type="password"
-                                       value={this.state.password} placeholder={currLanguages["lbl.user.password"]} name="password" validations={[required]}/>
+                                <label>{Langs[currentLang]["lbl.user.password"]}</label>
+                                <Input onChange={this.logChange} className="form-control" type="password"
+                                       value={this.state.password} placeholder={Langs[currentLang]["lbl.user.password"]} name="password" validations={[required]}/>
                             </div>
                             <div className="submit-section mt-3 mb-3 text-center">
-                                <CheckButton className="btn btn-primary mr-3" type="submit">{currLanguages["btn.login"]}</CheckButton>
+                                <CheckButton className="btn btn-primary mr-3" type="submit">{Langs[currentLang]["btn.login"]}</CheckButton>
                             </div>
                         </Form>
                     </div>
                 </Modal>
-
-                {/*<div className="message" style={toastStyle}>*/}
-                    {/*<ToastContainer/>*/}
-                {/*</div>*/}
             </div>
         );
     }

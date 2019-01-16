@@ -1,4 +1,4 @@
-export interface MultilanguageState {
+export interface LanguageState {
     status: string;
     currentLanguage: number;
 }
