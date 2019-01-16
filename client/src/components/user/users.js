@@ -242,12 +242,12 @@ export default class Users extends Component {
         return (
             <div className="container">
                 <div className="row">
-                <div className="col-sm-10 text-center">
-                    <MultiLanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
-                </div>
-                <div className="col-sm-2 text-right">
-                    <Login  onClick={this.loginSuccess.bind(this)} />
-                </div>
+                    <div className="col-sm-6 offset-sm-3 text-center">
+                        <MultiLanguage framework="React" compiler="TypeScript" onClick={this.changeLanguage.bind(this)} />
+                    </div>
+                    <div className="col-sm-3 text-right">
+                        <Login  onClick={this.loginSuccess.bind(this)} />
+                    </div>
                 </div>
                 <div className="panel panel-default p50 uth-panel mt-lg-1">
                     <h2>{currLanguages["lbl.new.user.info"]}</h2>
@@ -281,20 +281,20 @@ export default class Users extends Component {
                     <h2>{currLanguages["lbl.user.list"]}</h2>
                     <table className="table table-hover">
                         <thead>
-                            <tr>
-                                <th>{currLanguages["lbl.user.id"]}</th>
-                                <th>{currLanguages["lbl.user.name.age"]}</th>
-                                <th>{currLanguages["lbl.comment"]}</th>
-                                <th>{currLanguages["lbl.action"]}</th>
+                            <tr className="d-flex">
+                                <th className="col-md-2">{currLanguages["lbl.user.id"]}</th>
+                                <th className="col-md-3">{currLanguages["lbl.user.name.age"]}</th>
+                                <th className="col-md-5">{currLanguages["lbl.comment"]}</th>
+                                <th className="col-md-2">{currLanguages["lbl.action"]}</th>
                             </tr>
                         </thead>
                         <tbody>
                         {this.state.users.map(user =>
-                            <tr key={user.id}>
-                                <td>{user.id} </td>
-                                <td>{user.name} ({user.age}) </td>
-                                <td className="textarea_wrap">{user.comment}</td>
-                                <td><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
+                            <tr className="d-flex" key={user.id}>
+                                <td className="col-md-2">{user.id} </td>
+                                <td className="col-md-3">{user.name} ({user.age}) </td>
+                                <td className="textarea_wrap col-md-5">{user.comment}</td>
+                                <td className="col-md-2"><Button className="btn btn-info mr-1" onClick={() => this.plusAge(user.id)}>+1</Button>
                                     <Button className="btn btn-danger" onClick={() => this.deleteUser(user)}>{currLanguages["btn.delete"]}</Button>
                                 </td>
                             </tr>

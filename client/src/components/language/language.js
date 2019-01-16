@@ -45,7 +45,7 @@ const language = [
         'lbl.user.password': 'パスワード',
         'btn.add.user': 'ユーザーの追加',
         'btn.cancel': 'キャンセル',
-        'btn.show.more.users': '他のユーザーを表示',
+        'btn.show.more.users': 'さらに表示',
         'btn.create.user': '登録',
         'btn.delete': '削除',
         'btn.login': 'ログイン',

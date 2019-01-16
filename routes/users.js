@@ -26,7 +26,7 @@ router.get('/', checkAuth, function (req, res, next) {
     res.locals.connection.query('SELECT count(id) totalUsers from users', function (error, results, fields) {
         if (error) throw error;
         let totalUsers = results[0].totalUsers;
-        res.locals.connection.query('SELECT * from users order by createdate desc LIMIT ?', Number(limit), function (error, results, fields) {
+        res.locals.connection.query('SELECT * from users order by id desc LIMIT ?', Number(limit), function (error, results, fields) {
             res.locals.connection.end();
             if (error) throw error;
             let response = {totalUsers: totalUsers, users: results};
